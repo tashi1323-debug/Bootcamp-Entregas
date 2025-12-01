@@ -14,10 +14,16 @@ Verifico con git status
 Creo un el archivo readme.md, un index.html, un index.js y un package.json
 Lo añado a stagging con git add .
 Hago un commit con git commit -m "Mi primer commit"
-Subo los cambios con git push
+Subo los cambios con  git push --set-upstream origin main 
 
 4. Crear una rama
-
+Creo una rama y la nombro development con git branch development
+Voy a ella con git checkout development
+Cambio la frase "Hola Git" del console.log en el archivo index.js por "Hola Branch Development"
+Cambio la frase "Hola Git" dentro del h1 del archivo html por "Hola Branch Development"
+Ejecuto git add .
+Ejecuto git commit -m "Hola Branch"
+Subo los cambios con git push 
 
 
 
