@@ -11,7 +11,7 @@ Voy a vscode y ejecuto git clone (url ssh)
 Verifico con git status
 
 3. Hacer un commit y un push
-Creo un el archivo readme.md
+Creo un el archivo readme.md, un index.html, un index.js y un package.json
 Lo añado a stagging con git add .
 Hago un commit con git commit -m "Mi primer commit"
 Subo los cambios con git push
