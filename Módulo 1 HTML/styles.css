@@ -1,49 +1,39 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 *{
     box-sizing: border-box;
     margin: 8px;
-    
-
-  
-} 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,700&display=swap');
-
-
-
-img:hover {
-
-border-radius: 50%;
-
-
+    font-family: Montserrat
+}
+.fotos {
+    border-radius:10px;
 }
 
-img {
-   border-radius: 5%;
-   margin: 16px;
-    
+.fotos:hover{
+    background-color: rgb(241, 161, 147);
+    margin-right: 34%;
 }
 
-a:hover {
+
+.navbar a:hover {
     background-color:pink;
    
 }
 
 .navbar {
+
     display: flex;
     justify-content: space-between;
     font-size: 16px;
     gap: 20px;
-    max-width: 920px;
-    /position: fixed;
-    
+    align-items: center;
+    background-color: peachpuff;
+    width: 100%;
 }
 
+
+
 .navbar a{ 
-    color: gray;
+    color: grey;
     text-decoration: none;
     padding: 1rem;
     
@@ -55,68 +45,68 @@ h1{
     font-size:32px;
     margin-left: 32px;
     margin-top: 32px;
+    color: #212429;
     
-    
-
 }
-
-
 
 .grid-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
- 
-    
-}
+} 
+
 .precio {
     font-size: 14px;
-    font-family: ;
     margin-top: 20px;
-    margin-left: 160px;
+    margin-left: 130px;
+    color: black;
     }
 
 .texto{
     text-align: left;
-    font-family: ;
     font-size: 14px;
-    margin-top: 20px;
-    margin-left: 12px;
+    margin-left: 32px;
+    font-family: montserrat;
+    color: rgb(83, 83, 83);
     }
 
-
-    
-
-.fotos:hover {
-    color: pink;
-    border-radius: 20%;
-    
-}
-
-.navfooter{
-
+.navfooter {
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
     background-color: #212429;
-    padding: 32px;
-    gap: 32px;
-    position: relative;
-    top: 32px;
-    max-width: 920px;
-    min-width: 1200px;
-   
+}
+
+
+.footer-item {
+    display: flex;
+    align-items: center;
 }
 
 
 
 .navfooter a {
-    color: white;
+    color: rgb(219, 210, 210);
     text-decoration: none;
-    
 }
 
-.simbolo-footer{
+.imagen {
     background-color: white;
-    border-radius: 30%;
-    
+    border-radius: 50%;
 }
+@media (max-width: 920px) {
+    .moda {
+        display: none;
+    }
+    .iconos {
+        display: none;
+    }
+    .navbar img {
+        margin: 0 auto;
+    }
+    .navfooter {
+        flex-direction: column;
+    }
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
