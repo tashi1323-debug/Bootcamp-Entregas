@@ -1,112 +1,100 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
-*{
-    box-sizing: border-box;
-    margin: 8px;
-    font-family: Montserrat
+* {
+  box-sizing: border-box;
+  margin: 8px;
+  font-family: montserrat;
 }
 .fotos {
-    border-radius:10px;
+  border-radius: 10px;
 }
 
-.fotos:hover{
-    background-color: rgb(241, 161, 147);
-    margin-right: 34%;
-}
+.fotos:hover {
+  background-color: rgb(241, 161, 147);
 
+  margin-right: 34%;
+}
 
 .navbar a:hover {
-    background-color:pink;
-   
+  background-color: pink;
 }
 
 .navbar {
-
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    gap: 20px;
-    align-items: center;
-    background-color: peachpuff;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  gap: 20px;
+  align-items: center;
+  background-color: peachpuff;
+  width: 100%;
 }
 
-
-
-.navbar a{ 
-    color: grey;
-    text-decoration: none;
-    padding: 1rem;
-    
+.navbar a {
+  color: grey;
+  text-decoration: none;
+  padding: 1rem;
 }
 
-
-
-h1{
-    font-size:32px;
-    margin-left: 32px;
-    margin-top: 32px;
-    color: #212429;
-    
+h1 {
+  font-size: 32px;
+  margin-left: 32px;
+  margin-top: 32px;
+  color: #212429;
 }
 
-.grid-container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-} 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 
 .precio {
-    font-size: 14px;
-    margin-top: 20px;
-    margin-left: 130px;
-    color: black;
-    }
+  font-size: 14px;
+  margin-top: 20px;
+  margin-left: 130px;
+  color: black;
+}
 
-.texto{
-    text-align: left;
-    font-size: 14px;
-    margin-left: 32px;
-    font-family: montserrat;
-    color: rgb(83, 83, 83);
-    }
+.texto {
+  text-align: left;
+  font-size: 14px;
+  margin-left: 32px;
+  font-family: montserrat;
+  color: rgb(83, 83, 83);
+}
 
 .navfooter {
-    display: flex;
-    justify-content: space-between;
-    background-color: #212429;
+  display: flex;
+  justify-content: space-between;
+  background-color: #212429;
 }
-
 
 .footer-item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-
-
 .navfooter a {
-    color: rgb(219, 210, 210);
-    text-decoration: none;
+  color: rgb(219, 210, 210);
+  text-decoration: none;
 }
 
 .imagen {
-    background-color: white;
-    border-radius: 50%;
+  background-color: white;
+  border-radius: 50%;
 }
 @media (max-width: 920px) {
-    .moda {
-        display: none;
-    }
-    .iconos {
-        display: none;
-    }
-    .navbar img {
-        margin: 0 auto;
-    }
-    .navfooter {
-        flex-direction: column;
-    }
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
+  .moda {
+    display: none;
+  }
+  .iconos {
+    display: none;
+  }
+  .navbar img {
+    margin: 0 auto;
+  }
+  .navfooter {
+    flex-direction: column;
+  }
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
 }
-
