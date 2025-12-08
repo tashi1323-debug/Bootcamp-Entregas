@@ -1,7 +1,7 @@
-var amigos = 6;
-var cena = 120;
-var bebidas = 18;
+let amigos = 6;
+const cena = 120;
+const bebidas = 18;
 
-var resultado = (cena - bebidas) / amigos;
+let resultado = (cena - bebidas) / amigos;
 
 console.log("Cada amigo debe pagar: " + resultado);
