@@ -1,0 +1,70 @@
+.turno-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.numero-turno {
+  font-size: 6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.texto-turno {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0px;
+  text-align: center;
+}
+.reset {
+  margin-top: 20px;
+}
+.reset:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.turno {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: darkgoldenrod;
+}
+.turno:hover {
+  background-color: goldenrod;
+  cursor: pointer;
+}
+.custom-text {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.custom-text:focus {
+  outline: none;
+  border-color: #66afe9;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.custom-text:hover {
+  border-color: #999;
+  cursor: pointer;
+}
+
+.submit {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: darkblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.submit:hover {
+  background-color: blue;
+  cursor: pointer;
+}
