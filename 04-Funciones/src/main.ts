@@ -7,17 +7,17 @@ const actualizarTurno = () => {
     elementoTurno !== undefined &&
     elementoTurno instanceof HTMLHeadingElement
   ) {
-    elementoTurno.textContent = turnoInicial.toString().padStart(2, "0");
+    elementoTurno.innerText = turnoInicial.toString().padStart(2, "0");
   }
 };
 
 const siguiente = () => {
-  turnoInicial = turnoInicial + 1;
+  turnoInicial++;
   actualizarTurno();
 };
 
 const anterior = () => {
-  if (turnoInicial > 0) {
+  if (turnoInicial >= 0) {
     turnoInicial = turnoInicial - 1;
     actualizarTurno();
   }
@@ -57,28 +57,26 @@ if (
   });
 }
 
-const customText = () => {
-  const nodoCustomText = document.getElementById("custom");
+const inputText = () => {
+  const nodoInputText = document.getElementById("custom");
   if (
-    nodoCustomText !== null &&
-    nodoCustomText !== undefined &&
-    nodoCustomText instanceof HTMLInputElement
+    nodoInputText !== null &&
+    nodoInputText !== undefined &&
+    nodoInputText instanceof HTMLInputElement
   ) {
-    const valorNodoCustomText = nodoCustomText.value;
-    turnoInicial = parseInt(valorNodoCustomText);
+    const valorNodoInputText = nodoInputText.value;
+    turnoInicial = parseInt(valorNodoInputText);
     actualizarTurno();
   }
 };
 
-const btnIngresarTurno = document.getElementById("submit");
+const btnEnviar = document.getElementById("submit");
 if (
-  btnIngresarTurno !== null &&
-  btnIngresarTurno !== undefined &&
-  btnIngresarTurno instanceof HTMLInputElement
+  btnEnviar !== null &&
+  btnEnviar !== undefined &&
+  btnEnviar instanceof HTMLInputElement
 ) {
-  btnIngresarTurno.addEventListener("click", () => {
-    customText();
+  btnEnviar.addEventListener("click", () => {
+    inputText();
   });
 }
-
-

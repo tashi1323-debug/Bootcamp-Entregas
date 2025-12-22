@@ -1,3 +1,187 @@
-import "./style.css";
+let puntuacionInicial = 0;
 
-console.log("Hello Typescript!");
+const mostrarPuntuacion = () => {
+  const elementoMostrarPuntuacion = document.getElementById("puntuacion");
+  if (
+    elementoMostrarPuntuacion !== null &&
+    elementoMostrarPuntuacion !== undefined &&
+    elementoMostrarPuntuacion instanceof HTMLHeadingElement
+  ) {
+    elementoMostrarPuntuacion.textContent = `Puntuación ${puntuacionInicial}`;
+    if (puntuacionInicial > 7.5) {
+      elementoMostrarPuntuacion.textContent = `Game Over! ${puntuacionInicial}`;
+    }
+  }
+
+  const mensajeGameOver = document.getElementById("frasemeplanto");
+  if (
+    puntuacionInicial > 7.5 &&
+    mensajeGameOver !== null &&
+    mensajeGameOver !== undefined &&
+    mensajeGameOver instanceof HTMLParagraphElement
+  ) {
+    mensajeGameOver.textContent = "Te has pasado! Juega otra vez!";
+  }
+  const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
+  if (
+    puntuacionInicial > 7.5 &&
+    desabilitarBotonNuevaCarta !== null &&
+    desabilitarBotonNuevaCarta !== undefined &&
+    desabilitarBotonNuevaCarta instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonNuevaCarta.disabled = true;
+  }
+  const desabilitarBotonMePlanto = document.getElementById("meplanto");
+  if (
+    puntuacionInicial > 7.5 &&
+    desabilitarBotonMePlanto !== null &&
+    desabilitarBotonMePlanto !== undefined &&
+    desabilitarBotonMePlanto instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonMePlanto.disabled = true;
+  }
+  if (
+    puntuacionInicial < 7.5 &&
+    desabilitarBotonMePlanto !== null &&
+    desabilitarBotonMePlanto !== undefined &&
+    desabilitarBotonMePlanto instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonMePlanto.disabled = false;
+  }
+};
+
+document.addEventListener("DOMContentLoaded", mostrarPuntuacion);
+
+const crearNumeroAleatorio = () => Math.floor(Math.random() * 11);
+
+const numeroCarta = (numeroAleatorio: number) => {
+  if (numeroAleatorio > 7) {
+    return numeroAleatorio + 2;
+  }
+  if (numeroAleatorio === 0) {
+    return numeroAleatorio + 1;
+  }
+  return numeroAleatorio;
+};
+
+const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
+  switch (numeroAleatorioCarta) {
+    case 1:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg";
+    case 2:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg";
+    case 3:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg";
+    case 4:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/4_cuatro-copas.jpg";
+    case 5:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/5_cinco-copas.jpg";
+    case 6:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/6_seis-copas.jpg";
+
+    case 7:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/7_siete-copas.jpg";
+    case 10:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg";
+    case 11:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg";
+    case 12:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg";
+    default:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
+  }
+};
+
+const mostrarCarta = (urlCarta: string) => {
+  const elementoMostrarCarta = document.getElementById("carta");
+  if (
+    elementoMostrarCarta !== null &&
+    elementoMostrarCarta !== undefined &&
+    elementoMostrarCarta instanceof HTMLImageElement
+  ) {
+    elementoMostrarCarta.src = urlCarta;
+  }
+};
+
+const resetCarta = () => {
+  let elementoResetCarta = document.getElementById("carta");
+  if (
+    elementoResetCarta !== null &&
+    elementoResetCarta !== undefined &&
+    elementoResetCarta instanceof HTMLImageElement
+  ) {
+    elementoResetCarta.src =
+      "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
+  }
+};
+
+const mePlanto = () => {
+  if (
+    btnNuevaCarta !== null &&
+    btnNuevaCarta !== undefined &&
+    btnNuevaCarta instanceof HTMLButtonElement
+  ) {
+    btnNuevaCarta.disabled = true;
+  }
+
+  const mensajeMePlanto = document.getElementById("frasemeplanto");
+  if (
+    mensajeMePlanto !== null &&
+    mensajeMePlanto !== undefined &&
+    mensajeMePlanto instanceof HTMLParagraphElement
+  ) {
+    mensajeMePlanto.textContent = "No sabia que eras una 🐔!";
+  }
+};
+
+const nuevaPartida = () => {
+  if (
+    btnNuevaCarta !== null &&
+    btnNuevaCarta !== undefined &&
+    btnNuevaCarta instanceof HTMLButtonElement
+  ) {
+    btnNuevaCarta.disabled = false;
+  }
+  puntuacionInicial = 0;
+  mostrarPuntuacion();
+  const resetMensaje = document.getElementById("frasemeplanto");
+  if (
+    resetMensaje !== null &&
+    resetMensaje !== undefined &&
+    resetMensaje instanceof HTMLParagraphElement
+  ) {
+    resetMensaje.textContent = "Buena Suerte!";
+  }
+};
+
+const dameCarta = () => {
+  let numero = crearNumeroAleatorio();
+  let carta = numeroCarta(numero);
+  let cartaURL = obtenerUrlCarta(carta);
+  mostrarCarta(cartaURL);
+  if (carta > 9) {
+    carta = 0.5;
+  }
+  puntuacionInicial = carta + puntuacionInicial;
+  mostrarPuntuacion();
+};
+
+const btnNuevaCarta = document.getElementById("nueva-carta");
+if (
+  btnNuevaCarta !== null &&
+  btnNuevaCarta !== undefined &&
+  btnNuevaCarta instanceof HTMLButtonElement
+) {
+  btnNuevaCarta.addEventListener("click", () => {
+    dameCarta();
+  });
+
+  const btnMePlanto = document.getElementById("meplanto");
+  btnMePlanto?.addEventListener("click", mePlanto);
+
+  const btnNuevaPartida = document.getElementById("nuevapartida");
+  btnNuevaPartida?.addEventListener("click", () => {
+    nuevaPartida();
+    resetCarta();
+  });
+}

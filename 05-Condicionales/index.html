@@ -3,13 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Juego 7,5</title>
   </head>
   <body>
-    <div id="app">
-      <h1>TypeScript Sandbox</h1>
+    <div id="mostrar-puntuacion">
+      <h1 id="puntuacion">Puntuación: 0</h1>
     </div>
+    <div>
+      <img
+        id="carta"
+        src="https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
+        alt="carta boca abajo"
+      />
+    </div>
+
+    <div id="botones" class="botones">
+      <button id="nueva-carta">Nueva Carta</button>
+      <button id="meplanto">Me planto</button>
+      <button id="nuevapartida">Nueva Partida</button>
+    </div>
+    <p id="frasemeplanto">Buena suerte!</p>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

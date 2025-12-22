@@ -5,3 +5,5 @@ const bebidas = 18;
 let resultado = (cena - bebidas) / amigos;
 
 console.log("Cada amigo debe pagar: " + resultado);
+
+
