@@ -12,7 +12,9 @@ const mostrarPuntuacion = () => {
       elementoMostrarPuntuacion.textContent = `Game Over! ${puntuacionInicial}`;
     }
   }
+};
 
+const GameOver = () => {
   const mensajeGameOver = document.getElementById("frasemeplanto");
   if (
     puntuacionInicial > 7.5 &&
@@ -21,15 +23,6 @@ const mostrarPuntuacion = () => {
     mensajeGameOver instanceof HTMLParagraphElement
   ) {
     mensajeGameOver.textContent = "Te has pasado! Juega otra vez!";
-  }
-  const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
-  if (
-    puntuacionInicial > 7.5 &&
-    desabilitarBotonNuevaCarta !== null &&
-    desabilitarBotonNuevaCarta !== undefined &&
-    desabilitarBotonNuevaCarta instanceof HTMLButtonElement
-  ) {
-    desabilitarBotonNuevaCarta.disabled = true;
   }
   const desabilitarBotonMePlanto = document.getElementById("meplanto");
   if (
@@ -40,13 +33,44 @@ const mostrarPuntuacion = () => {
   ) {
     desabilitarBotonMePlanto.disabled = true;
   }
+  const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
   if (
-    puntuacionInicial < 7.5 &&
+    puntuacionInicial >= 7.5 &&
+    desabilitarBotonNuevaCarta !== null &&
+    desabilitarBotonNuevaCarta !== undefined &&
+    desabilitarBotonNuevaCarta instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonNuevaCarta.disabled = true;
+  }
+};
+
+const hasGanado = () => {
+  const mensajeFelicidades = document.getElementById("frasemeplanto");
+  if (
+    puntuacionInicial === 7.5 &&
+    mensajeFelicidades !== null &&
+    mensajeFelicidades !== undefined &&
+    mensajeFelicidades instanceof HTMLParagraphElement
+  ) {
+    mensajeFelicidades.textContent = "Enhorabuena, Has Ganado!";
+  }
+  const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
+  if (
+    puntuacionInicial === 7.5 &&
+    desabilitarBotonNuevaCarta !== null &&
+    desabilitarBotonNuevaCarta !== undefined &&
+    desabilitarBotonNuevaCarta instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonNuevaCarta.disabled = true;
+  }
+  const desabilitarBotonMePlanto = document.getElementById("meplanto");
+  if (
+    puntuacionInicial === 7.5 &&
     desabilitarBotonMePlanto !== null &&
     desabilitarBotonMePlanto !== undefined &&
     desabilitarBotonMePlanto instanceof HTMLButtonElement
   ) {
-    desabilitarBotonMePlanto.disabled = false;
+    desabilitarBotonMePlanto.disabled = true;
   }
 };
 
@@ -103,18 +127,6 @@ const mostrarCarta = (urlCarta: string) => {
   }
 };
 
-const resetCarta = () => {
-  let elementoResetCarta = document.getElementById("carta");
-  if (
-    elementoResetCarta !== null &&
-    elementoResetCarta !== undefined &&
-    elementoResetCarta instanceof HTMLImageElement
-  ) {
-    elementoResetCarta.src =
-      "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
-  }
-};
-
 const mePlanto = () => {
   if (
     btnNuevaCarta !== null &&
@@ -130,7 +142,16 @@ const mePlanto = () => {
     mensajeMePlanto !== undefined &&
     mensajeMePlanto instanceof HTMLParagraphElement
   ) {
-    mensajeMePlanto.textContent = "No sabia que eras una 🐔!";
+    mensajeMePlanto.textContent = "No sabia que eras una 🐔";
+  }
+  const desabilitarBotonMePlanto = document.getElementById("meplanto");
+  if (
+    puntuacionInicial > 7.5 &&
+    desabilitarBotonMePlanto !== null &&
+    desabilitarBotonMePlanto !== undefined &&
+    desabilitarBotonMePlanto instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonMePlanto.disabled = true;
   }
 };
 
@@ -152,9 +173,17 @@ const nuevaPartida = () => {
   ) {
     resetMensaje.textContent = "Buena Suerte!";
   }
+  const desabilitarBotonMePlanto = document.getElementById("meplanto");
+  if (
+    desabilitarBotonMePlanto !== null &&
+    desabilitarBotonMePlanto !== undefined &&
+    desabilitarBotonMePlanto instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonMePlanto.disabled = false;
+  }
 };
 
-const dameCarta = () => {
+const puntuacionCarta = () => {
   let numero = crearNumeroAleatorio();
   let carta = numeroCarta(numero);
   let cartaURL = obtenerUrlCarta(carta);
@@ -163,6 +192,12 @@ const dameCarta = () => {
     carta = 0.5;
   }
   puntuacionInicial = carta + puntuacionInicial;
+};
+
+const dameCarta = () => {
+  puntuacionCarta();
+  hasGanado();
+  GameOver();
   mostrarPuntuacion();
 };
 
@@ -182,6 +217,9 @@ if (
   const btnNuevaPartida = document.getElementById("nuevapartida");
   btnNuevaPartida?.addEventListener("click", () => {
     nuevaPartida();
-    resetCarta();
+
+    mostrarCarta(
+      "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
+    );
   });
 }
