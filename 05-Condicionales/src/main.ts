@@ -210,12 +210,24 @@ if (
   btnNuevaCarta.addEventListener("click", () => {
     dameCarta();
   });
+}
 
-  const btnMePlanto = document.getElementById("meplanto");
-  btnMePlanto?.addEventListener("click", mePlanto);
+const btnMePlanto = document.getElementById("meplanto");
+if (
+  btnMePlanto !== null &&
+  btnMePlanto !== undefined &&
+  btnMePlanto instanceof HTMLButtonElement
+) {
+  btnMePlanto.addEventListener("click", mePlanto);
+}
 
-  const btnNuevaPartida = document.getElementById("nuevapartida");
-  btnNuevaPartida?.addEventListener("click", () => {
+const btnNuevaPartida = document.getElementById("nuevapartida");
+if (
+  btnNuevaPartida !== null &&
+  btnNuevaPartida !== undefined &&
+  btnNuevaPartida instanceof HTMLButtonElement
+) {
+  btnNuevaPartida.addEventListener("click", () => {
     nuevaPartida();
 
     mostrarCarta(
