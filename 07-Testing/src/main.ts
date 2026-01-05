@@ -1,3 +1,7 @@
-import "./style.css";
+import {} from "./modelo";
 
-console.log("Hello Typescript!");
+import {} from "./motor";
+
+import { mostrarPuntuacion } from "./ui";
+
+document.addEventListener("DOMContentLoaded", mostrarPuntuacion);
