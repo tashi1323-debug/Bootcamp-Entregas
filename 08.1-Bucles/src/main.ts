@@ -76,22 +76,30 @@ const pacientes: Pacientes[] = [
 
 //a) Queremos extraer la lista de paciente que están asignados a la especialidad de Pediatría
 
-//const obtenPacientesAsignadosAPediatria = (pacientes: Pacientes[]): Pacientes[] => {};
-const listaPediatria = [];
-for (let i = 0; i < pacientes.length; i++) {
-  if (pacientes[i].especialidad === "Pediatra") {
-    listaPediatria.push(pacientes[i]);
+const obtenPacientesAsignadosAPediatria = (
+  pacientes: Pacientes[]
+): Pacientes[] => {
+  const listaPediatria = [];
+  for (let i = 0; i < pacientes.length; i++) {
+    if (pacientes[i].especialidad === "Pediatra") {
+      listaPediatria.push(pacientes[i]);
+    }
   }
-}
+  return listaPediatria;
+};
 
 //b) Queremos extraer la lista de pacientes asignados a Pediatría y que tengan una edad menor de 10 años.
-
-const listaPediatriaMenor10años = [];
-for (let i = 0; i < pacientes.length; i++) {
-  if (pacientes[i].especialidad === "Pediatra" && pacientes[i].edad < 10) {
-    listaPediatriaMenor10años.push(pacientes[i]);
+const obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios = (
+  pacientes: Pacientes[]
+): Pacientes[] => {
+  const listaPediatriaMenor10años = [];
+  for (let i = 0; i < pacientes.length; i++) {
+    if (pacientes[i].especialidad === "Pediatra" && pacientes[i].edad < 10) {
+      listaPediatriaMenor10años.push(pacientes[i]);
+    }
   }
-}
+  return listaPediatriaMenor10años;
+};
 
 /*Queremos activar el protocolo de urgencia si cualquier de los pacientes tiene un ritmo cardíaco superior a 100 pulsaciones por minuto y una temperatura corporal superior a 39 grados.*/
 
@@ -108,8 +116,6 @@ const activarProtocoloEmergencia = (pacientes: Pacientes[]): boolean => {
   }
   return activarProtocolo;
 };
-
-console.log(activarProtocoloEmergencia(pacientes));
 
 /*El pediatra no puede atender hoy a los pacientes, queremos reasignar los pacientes asignados a la especialidad de pediatría a la de medico de familia.*/
 
@@ -128,8 +134,6 @@ const reasignaPacientesAMedicoFamilia = (
 };
 
 /*Queremos saber si podemos mandar al Pediatra a casa (si no tiene pacientes asignados), comprobar si en la lista hay algún paciente asignado a pediatría*/
-
-let hayPediatria = false;
 
 const HayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
   let hayPediatria = false;
