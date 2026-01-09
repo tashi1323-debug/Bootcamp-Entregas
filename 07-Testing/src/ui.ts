@@ -1,4 +1,4 @@
-import { dameCarta } from "./motor";
+import { crearNumeroAleatorio, numeroCarta, obtenerUrlCarta } from "./motor";
 import { puntuacion } from "./modelo";
 
 export const mostrarPuntuacion = () => {
@@ -181,3 +181,21 @@ if (
     );
   });
 }
+
+const dameCarta = () => {
+  puntuacionCarta();
+  hasGanado();
+  GameOver();
+  mostrarPuntuacion();
+};
+
+const puntuacionCarta = () => {
+  let numero = crearNumeroAleatorio();
+  let carta = numeroCarta(numero);
+  let cartaURL = obtenerUrlCarta(carta);
+  mostrarCarta(cartaURL);
+  if (carta > 9) {
+    carta = 0.5;
+  }
+  puntuacion.puntuacionInicial = carta + puntuacion.puntuacionInicial;
+};

@@ -148,36 +148,39 @@ export const nuevaPartida = () => {
 };
 
 const btnNuevaCarta = document.getElementById("nueva-carta");
-if (
-  btnNuevaCarta !== null &&
-  btnNuevaCarta !== undefined &&
-  btnNuevaCarta instanceof HTMLButtonElement
-) {
-  btnNuevaCarta.addEventListener("click", () => {
-    dameCarta();
-  });
-}
-
 const btnMePlanto = document.getElementById("meplanto");
-if (
-  btnMePlanto !== null &&
-  btnMePlanto !== undefined &&
-  btnMePlanto instanceof HTMLButtonElement
-) {
-  btnMePlanto.addEventListener("click", mePlanto);
-}
-
 const btnNuevaPartida = document.getElementById("nuevapartida");
-if (
-  btnNuevaPartida !== null &&
-  btnNuevaPartida !== undefined &&
-  btnNuevaPartida instanceof HTMLButtonElement
-) {
-  btnNuevaPartida.addEventListener("click", () => {
-    nuevaPartida();
 
-    mostrarCarta(
-      "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
-    );
-  });
-}
+export const iniciarJuego = () => {
+  if (
+    btnNuevaCarta !== null &&
+    btnNuevaCarta !== undefined &&
+    btnNuevaCarta instanceof HTMLButtonElement
+  ) {
+    btnNuevaCarta.addEventListener("click", () => {
+      dameCarta();
+    });
+  }
+
+  if (
+    btnMePlanto !== null &&
+    btnMePlanto !== undefined &&
+    btnMePlanto instanceof HTMLButtonElement
+  ) {
+    btnMePlanto.addEventListener("click", mePlanto);
+  }
+
+  if (
+    btnNuevaPartida !== null &&
+    btnNuevaPartida !== undefined &&
+    btnNuevaPartida instanceof HTMLButtonElement
+  ) {
+    btnNuevaPartida.addEventListener("click", () => {
+      nuevaPartida();
+
+      mostrarCarta(
+        "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
+      );
+    });
+  }
+};

@@ -1,5 +1,19 @@
 let puntuacionInicial = 0;
 
+const crearNumeroAleatorio = () => Math.floor(Math.random() * 11);
+
+const numeroCarta = (numeroAleatorio: number) => {
+  if (numeroAleatorio > 7) {
+    return numeroAleatorio + 2;
+  } else if (numeroAleatorio === 0) {
+    return numeroAleatorio + 1;
+  }
+  if (numeroAleatorio > 9) {
+    numeroAleatorio = 0.5;
+  }
+  puntuacionInicial = numeroAleatorio + puntuacionInicial;
+  return numeroAleatorio;
+};cd
 const mostrarPuntuacion = () => {
   const elementoMostrarPuntuacion = document.getElementById("puntuacion");
   if (
@@ -9,15 +23,22 @@ const mostrarPuntuacion = () => {
   ) {
     elementoMostrarPuntuacion.textContent = `Puntuación ${puntuacionInicial}`;
     if (puntuacionInicial > 7.5) {
-      elementoMostrarPuntuacion.textContent = `Game Over! ${puntuacionInicial}`;
+      GameOver();
     }
+  }
+};
+
+const comprobarPartida = () => {
+  if (puntuacionInicial > 7.5) {
+    GameOver();
+  } else if (puntuacionInicial === 7.5) {
+    hasGanado();
   }
 };
 
 const GameOver = () => {
   const mensajeGameOver = document.getElementById("frasemeplanto");
   if (
-    puntuacionInicial > 7.5 &&
     mensajeGameOver !== null &&
     mensajeGameOver !== undefined &&
     mensajeGameOver instanceof HTMLParagraphElement
@@ -26,7 +47,6 @@ const GameOver = () => {
   }
   const desabilitarBotonMePlanto = document.getElementById("meplanto");
   if (
-    puntuacionInicial > 7.5 &&
     desabilitarBotonMePlanto !== null &&
     desabilitarBotonMePlanto !== undefined &&
     desabilitarBotonMePlanto instanceof HTMLButtonElement
@@ -35,7 +55,6 @@ const GameOver = () => {
   }
   const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
   if (
-    puntuacionInicial >= 7.5 &&
     desabilitarBotonNuevaCarta !== null &&
     desabilitarBotonNuevaCarta !== undefined &&
     desabilitarBotonNuevaCarta instanceof HTMLButtonElement
@@ -47,7 +66,6 @@ const GameOver = () => {
 const hasGanado = () => {
   const mensajeFelicidades = document.getElementById("frasemeplanto");
   if (
-    puntuacionInicial === 7.5 &&
     mensajeFelicidades !== null &&
     mensajeFelicidades !== undefined &&
     mensajeFelicidades instanceof HTMLParagraphElement
@@ -56,7 +74,6 @@ const hasGanado = () => {
   }
   const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
   if (
-    puntuacionInicial === 7.5 &&
     desabilitarBotonNuevaCarta !== null &&
     desabilitarBotonNuevaCarta !== undefined &&
     desabilitarBotonNuevaCarta instanceof HTMLButtonElement
@@ -65,7 +82,6 @@ const hasGanado = () => {
   }
   const desabilitarBotonMePlanto = document.getElementById("meplanto");
   if (
-    puntuacionInicial === 7.5 &&
     desabilitarBotonMePlanto !== null &&
     desabilitarBotonMePlanto !== undefined &&
     desabilitarBotonMePlanto instanceof HTMLButtonElement
@@ -74,19 +90,10 @@ const hasGanado = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", mostrarPuntuacion);
-
-const crearNumeroAleatorio = () => Math.floor(Math.random() * 11);
-
-const numeroCarta = (numeroAleatorio: number) => {
-  if (numeroAleatorio > 7) {
-    return numeroAleatorio + 2;
-  }
-  if (numeroAleatorio === 0) {
-    return numeroAleatorio + 1;
-  }
-  return numeroAleatorio;
-};
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarPuntuacion();
+  iniciarJuego();
+});
 
 const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
   switch (numeroAleatorioCarta) {
@@ -188,50 +195,48 @@ const puntuacionCarta = () => {
   let carta = numeroCarta(numero);
   let cartaURL = obtenerUrlCarta(carta);
   mostrarCarta(cartaURL);
-  if (carta > 9) {
-    carta = 0.5;
-  }
-  puntuacionInicial = carta + puntuacionInicial;
 };
 
 const dameCarta = () => {
   puntuacionCarta();
-  hasGanado();
-  GameOver();
+  comprobarPartida();
   mostrarPuntuacion();
 };
 
 const btnNuevaCarta = document.getElementById("nueva-carta");
-if (
-  btnNuevaCarta !== null &&
-  btnNuevaCarta !== undefined &&
-  btnNuevaCarta instanceof HTMLButtonElement
-) {
-  btnNuevaCarta.addEventListener("click", () => {
-    dameCarta();
-  });
-}
 
 const btnMePlanto = document.getElementById("meplanto");
-if (
-  btnMePlanto !== null &&
-  btnMePlanto !== undefined &&
-  btnMePlanto instanceof HTMLButtonElement
-) {
-  btnMePlanto.addEventListener("click", mePlanto);
-}
 
 const btnNuevaPartida = document.getElementById("nuevapartida");
-if (
-  btnNuevaPartida !== null &&
-  btnNuevaPartida !== undefined &&
-  btnNuevaPartida instanceof HTMLButtonElement
-) {
-  btnNuevaPartida.addEventListener("click", () => {
-    nuevaPartida();
 
-    mostrarCarta(
-      "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
-    );
-  });
-}
+const iniciarJuego = () => {
+  if (
+    btnNuevaCarta !== null &&
+    btnNuevaCarta !== undefined &&
+    btnNuevaCarta instanceof HTMLButtonElement
+  ) {
+    btnNuevaCarta.addEventListener("click", () => {
+      dameCarta();
+    });
+  }
+  if (
+    btnMePlanto !== null &&
+    btnMePlanto !== undefined &&
+    btnMePlanto instanceof HTMLButtonElement
+  ) {
+    btnMePlanto.addEventListener("click", mePlanto);
+  }
+  if (
+    btnNuevaPartida !== null &&
+    btnNuevaPartida !== undefined &&
+    btnNuevaPartida instanceof HTMLButtonElement
+  ) {
+    btnNuevaPartida.addEventListener("click", () => {
+      nuevaPartida();
+
+      mostrarCarta(
+        "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
+      );
+    });
+  }
+};

@@ -52,5 +52,5 @@ describe("numeroCarta", () => {
 });
 
 
-// Que funciones mas debo probar?
-// Todas las funciones que interactuan con html quedan fuera de los tests ahora?
+
+
