@@ -146,24 +146,16 @@ interface NumeroPacientesPorEspecialidad {
   cardiologia: number;
 }
 
-// No lo he hecho solo.
-
-/*const cuentaPacientesPorEspecialidad = (
-  pacientes: Pacientes[]
-): NumeroPacientesPorEspecialidad => {
-  const resultado = pacientes.reduce(
-    (acumulador, paciente) => {
-      if (paciente.especialidad === "Medico de familia") {
-        acumulador.medicoDeFamilia++;
-      } else if (paciente.especialidad === "Pediatra") {
-        acumulador.pediatria++;
-      } else if (paciente.especialidad === "Cardiólogo") {
-        acumulador.cardiologia++;
-      }
-      return acumulador;
-    },
-    { medicoDeFamilia: 0, pediatria: 0, cardiologia: 0 }
-  );
-  return resultado;
-};
-*/
+const numeroTotal: NumeroPacientesPorEspecialidad = pacientes.reduce(
+  (acumulador, paciente) => {
+    if (paciente.especialidad === "Medico de familia") {
+      acumulador.medicoDeFamilia++;
+    } else if (paciente.especialidad === "Pediatra") {
+      acumulador.pediatria++;
+    } else if (paciente.especialidad === "Cardiólogo") {
+      acumulador.cardiologia++;
+    }
+    return acumulador;
+  },
+  { medicoDeFamilia: 0, pediatria: 0, cardiologia: 0 }
+);

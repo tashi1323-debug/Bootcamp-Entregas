@@ -1,7 +1,6 @@
-import { mostrarCarta, hasGanado, GameOver, mostrarPuntuacion } from "./ui";
-import { puntuacion } from "./modelo";
+import { partida } from "./modelo";
 
-const crearNumeroAleatorio = () => Math.floor(Math.random() * 11);
+export const crearNumeroAleatorio = () => Math.floor(Math.random() * 11);
 
 export const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
   switch (numeroAleatorioCarta) {
@@ -31,30 +30,31 @@ export const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
   }
 };
 
-const numeroCarta = (numeroAleatorio: number) => {
+export const numeroCarta = (numeroAleatorio: number) => {
+  console.log(numeroAleatorio);
   if (numeroAleatorio > 7) {
-    return numeroAleatorio + 2;
-  }
-  if (numeroAleatorio === 0) {
-    return numeroAleatorio + 1;
-  }
+     numeroAleatorio = numeroAleatorio + 2;
+  } else if (numeroAleatorio === 0) {
+     numeroAleatorio = numeroAleatorio + 1;
+  }console.log(numeroAleatorio);
+
   return numeroAleatorio;
+ 
 };
 
-export const puntuacionCarta = () => {
-  let numero = crearNumeroAleatorio();
-  let carta = numeroCarta(numero);
-  let cartaURL = obtenerUrlCarta(carta);
-  mostrarCarta(cartaURL);
-  if (carta > 9) {
-    carta = 0.5;
+export const obtenerPuntosCarta = (carta: number) => {
+  if (carta > 7) {
+    return 0.5;
   }
-  puntuacion.puntuacionInicial = carta + puntuacion.puntuacionInicial;
+  return carta;
 };
 
-export const dameCarta = () => {
-  puntuacionCarta();
-  hasGanado();
-  GameOver();
-  mostrarPuntuacion();
+
+
+export const sumarPuntuacion = (puntosCarta: number) => {
+  return partida.puntuacionInicial + puntosCarta;
+};
+
+export const actualizarPuntuacion = (puntosSumados: number) => {
+partida.puntuacionInicial = puntosSumados;
 };

@@ -13,7 +13,7 @@ const numeroCarta = (numeroAleatorio: number) => {
   }
   puntuacionInicial = numeroAleatorio + puntuacionInicial;
   return numeroAleatorio;
-};cd
+};
 const mostrarPuntuacion = () => {
   const elementoMostrarPuntuacion = document.getElementById("puntuacion");
   if (

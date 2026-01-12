@@ -1,5 +1,12 @@
-import { dameCarta } from "./motor";
-import { puntuacion } from "./modelo";
+import {
+  crearNumeroAleatorio,
+  obtenerUrlCarta,
+  numeroCarta,
+  obtenerPuntosCarta,
+  sumarPuntuacion,
+  actualizarPuntuacion,
+} from "./motor";
+import { partida } from "./modelo";
 
 export const mostrarPuntuacion = () => {
   const elementoMostrarPuntuacion = document.getElementById("puntuacion");
@@ -8,22 +15,22 @@ export const mostrarPuntuacion = () => {
     elementoMostrarPuntuacion !== undefined &&
     elementoMostrarPuntuacion instanceof HTMLHeadingElement
   ) {
-    elementoMostrarPuntuacion.textContent = `Puntuación ${puntuacion.puntuacionInicial}`;
+    elementoMostrarPuntuacion.textContent = `Puntuación ${partida.puntuacionInicial}`;
   }
   if (
-    puntuacion.puntuacionInicial > 7.5 &&
+    partida.puntuacionInicial > 7.5 &&
     elementoMostrarPuntuacion !== null &&
     elementoMostrarPuntuacion !== undefined &&
     elementoMostrarPuntuacion instanceof HTMLHeadingElement
   ) {
-    elementoMostrarPuntuacion.textContent = `Game Over! ${puntuacion.puntuacionInicial}`;
+    elementoMostrarPuntuacion.textContent = `Game Over! ${partida.puntuacionInicial}`;
   }
+ 
 };
 
-export const GameOver = () => {
+const GameOver = () => {
   const mensajeGameOver = document.getElementById("frasemeplanto");
   if (
-    puntuacion.puntuacionInicial > 7.5 &&
     mensajeGameOver !== null &&
     mensajeGameOver !== undefined &&
     mensajeGameOver instanceof HTMLParagraphElement
@@ -32,7 +39,6 @@ export const GameOver = () => {
   }
   const desabilitarBotonMePlanto = document.getElementById("meplanto");
   if (
-    puntuacion.puntuacionInicial > 7.5 &&
     desabilitarBotonMePlanto !== null &&
     desabilitarBotonMePlanto !== undefined &&
     desabilitarBotonMePlanto instanceof HTMLButtonElement
@@ -41,7 +47,6 @@ export const GameOver = () => {
   }
   const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
   if (
-    puntuacion.puntuacionInicial >= 7.5 &&
     desabilitarBotonNuevaCarta !== null &&
     desabilitarBotonNuevaCarta !== undefined &&
     desabilitarBotonNuevaCarta instanceof HTMLButtonElement
@@ -49,49 +54,7 @@ export const GameOver = () => {
     desabilitarBotonNuevaCarta.disabled = true;
   }
 };
-
-export const hasGanado = () => {
-  const mensajeFelicidades = document.getElementById("frasemeplanto");
-  if (
-    puntuacion.puntuacionInicial === 7.5 &&
-    mensajeFelicidades !== null &&
-    mensajeFelicidades !== undefined &&
-    mensajeFelicidades instanceof HTMLParagraphElement
-  ) {
-    mensajeFelicidades.textContent = "Enhorabuena, Has Ganado!";
-  }
-  const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
-  if (
-    puntuacion.puntuacionInicial === 7.5 &&
-    desabilitarBotonNuevaCarta !== null &&
-    desabilitarBotonNuevaCarta !== undefined &&
-    desabilitarBotonNuevaCarta instanceof HTMLButtonElement
-  ) {
-    desabilitarBotonNuevaCarta.disabled = true;
-  }
-  const desabilitarBotonMePlanto = document.getElementById("meplanto");
-  if (
-    puntuacion.puntuacionInicial === 7.5 &&
-    desabilitarBotonMePlanto !== null &&
-    desabilitarBotonMePlanto !== undefined &&
-    desabilitarBotonMePlanto instanceof HTMLButtonElement
-  ) {
-    desabilitarBotonMePlanto.disabled = true;
-  }
-};
-
-export const mostrarCarta = (urlCarta: string) => {
-  const elementoMostrarCarta = document.getElementById("carta");
-  if (
-    elementoMostrarCarta !== null &&
-    elementoMostrarCarta !== undefined &&
-    elementoMostrarCarta instanceof HTMLImageElement
-  ) {
-    elementoMostrarCarta.src = urlCarta;
-  }
-};
-
-export const mePlanto = () => {
+const mePlanto = () => {
   if (
     btnNuevaCarta !== null &&
     btnNuevaCarta !== undefined &&
@@ -110,7 +73,7 @@ export const mePlanto = () => {
   }
   const desabilitarBotonMePlanto = document.getElementById("meplanto");
   if (
-    puntuacion.puntuacionInicial > 7.5 &&
+    partida.puntuacionInicial > 7.5 &&
     desabilitarBotonMePlanto !== null &&
     desabilitarBotonMePlanto !== undefined &&
     desabilitarBotonMePlanto instanceof HTMLButtonElement
@@ -119,7 +82,51 @@ export const mePlanto = () => {
   }
 };
 
-export const nuevaPartida = () => {
+const hasGanado = () => {
+  const mensajeFelicidades = document.getElementById("frasemeplanto");
+  if (
+    mensajeFelicidades !== null &&
+    mensajeFelicidades !== undefined &&
+    mensajeFelicidades instanceof HTMLParagraphElement
+  ) {
+    mensajeFelicidades.textContent = "Enhorabuena, Has Ganado!";
+  }
+  const desabilitarBotonNuevaCarta = document.getElementById("nueva-carta");
+  if (
+    desabilitarBotonNuevaCarta !== null &&
+    desabilitarBotonNuevaCarta !== undefined &&
+    desabilitarBotonNuevaCarta instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonNuevaCarta.disabled = true;
+  }
+  const desabilitarBotonMePlanto = document.getElementById("meplanto");
+  if (
+    desabilitarBotonMePlanto !== null &&
+    desabilitarBotonMePlanto !== undefined &&
+    desabilitarBotonMePlanto instanceof HTMLButtonElement
+  ) {
+    desabilitarBotonMePlanto.disabled = true;
+  }
+};
+const comprobarPartida = () => {
+  if (partida.puntuacionInicial > 7.5) {
+    GameOver();
+  } else if (partida.puntuacionInicial === 7.5) {
+    hasGanado();
+  }
+};
+export const mostrarCarta = (urlCarta: string) => {
+  const elementoMostrarCarta = document.getElementById("carta");
+  if (
+    elementoMostrarCarta !== null &&
+    elementoMostrarCarta !== undefined &&
+    elementoMostrarCarta instanceof HTMLImageElement
+  ) {
+    elementoMostrarCarta.src = urlCarta;
+  }
+};
+
+const nuevaPartida = () => {
   if (
     btnNuevaCarta !== null &&
     btnNuevaCarta !== undefined &&
@@ -127,7 +134,7 @@ export const nuevaPartida = () => {
   ) {
     btnNuevaCarta.disabled = false;
   }
-  puntuacion.puntuacionInicial = 0;
+  partida.puntuacionInicial = 0;
   mostrarPuntuacion();
   const resetMensaje = document.getElementById("frasemeplanto");
   if (
@@ -146,10 +153,6 @@ export const nuevaPartida = () => {
     desabilitarBotonMePlanto.disabled = false;
   }
 };
-
-const btnNuevaCarta = document.getElementById("nueva-carta");
-const btnMePlanto = document.getElementById("meplanto");
-const btnNuevaPartida = document.getElementById("nuevapartida");
 
 export const iniciarJuego = () => {
   if (
@@ -183,4 +186,22 @@ export const iniciarJuego = () => {
       );
     });
   }
+};
+const dameCarta = () => {
+  puntuacionCarta();
+  comprobarPartida();
+  mostrarPuntuacion();
+};
+const btnNuevaCarta = document.getElementById("nueva-carta");
+const btnMePlanto = document.getElementById("meplanto");
+const btnNuevaPartida = document.getElementById("nuevapartida");
+
+const puntuacionCarta = () => {
+  let numero = crearNumeroAleatorio();
+  let carta = numeroCarta(numero);
+  const puntos = obtenerPuntosCarta(carta);
+  const puntosSumados = sumarPuntuacion(puntos);
+  actualizarPuntuacion(puntosSumados);
+  let cartaURL = obtenerUrlCarta(carta);
+  mostrarCarta(cartaURL);
 };
