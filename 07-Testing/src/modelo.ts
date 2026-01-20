@@ -1,7 +1,7 @@
-interface Puntuacion {
+interface Partida {
   puntuacionInicial: number;
 }
 
-export const puntuacion: Puntuacion = {
+export const partida: Partida = {
   puntuacionInicial: 0,
 };

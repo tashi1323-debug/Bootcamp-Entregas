@@ -16,16 +16,10 @@ export const mostrarPuntuacion = () => {
     elementoMostrarPuntuacion instanceof HTMLHeadingElement
   ) {
     elementoMostrarPuntuacion.textContent = `Puntuación ${partida.puntuacionInicial}`;
+    if (partida.puntuacionInicial > 7.5) {
+      GameOver();
+    }
   }
-  if (
-    partida.puntuacionInicial > 7.5 &&
-    elementoMostrarPuntuacion !== null &&
-    elementoMostrarPuntuacion !== undefined &&
-    elementoMostrarPuntuacion instanceof HTMLHeadingElement
-  ) {
-    elementoMostrarPuntuacion.textContent = `Game Over! ${partida.puntuacionInicial}`;
-  }
- 
 };
 
 const GameOver = () => {
@@ -108,6 +102,7 @@ const hasGanado = () => {
     desabilitarBotonMePlanto.disabled = true;
   }
 };
+
 const comprobarPartida = () => {
   if (partida.puntuacionInicial > 7.5) {
     GameOver();

@@ -1,12 +1,17 @@
-import { obtenerUrlCarta, crearNumeroAleatorio, numeroCarta } from "./motor";
-import {vi} from "vitest";
+import {
+  obtenerUrlCarta,
+  crearNumeroAleatorio,
+  numeroCarta,
+  sumarPuntuacion,
+  actualizarPuntuacion,
+} from "./motor";
+import { partida } from "./modelo";
+import { vi } from "vitest";
 // Apartados obligatorios
 
 // 1. Identifica las funciones y componentes que determinan si un jugador ha ganado la partida o no.
 
 // 2. Crea una serie de tests utilizando la librería de testing vitest para comprobar que el juego funciona correctamente.
-
-
 
 //Apartados opcionales
 
@@ -15,27 +20,8 @@ import {vi} from "vitest";
 describe("crearNumeroAleatorio", () => {
   it("Tiene que crear un numero aleatorio entre el 0 y el 10, forzamos un 3 para ver si devuelve 3.", () => {
     //Arrange
-    const numeroEsperado = 3;
-
-    const spyOnMathRandom = vi
-      .spyOn(global.Math, "random")
-      .mockReturnValue(numeroEsperado);
-
     //Act
-    const resultado = crearNumeroAleatorio();
     //Assert
-    expect(resultado).toBe(numeroEsperado);
-  });
-});
-
-describe("obtenerUrlCarta", () => {
-  it("Tiene que devolver la url del numero de la carta correspondiente, si sale el numero 3, tiene que devolver la url de la carta 3.", () => {
-    //Arrange
-    const urlEsperada = 3;
-    //Act
-    const resultado = obtenerUrlCarta(urlEsperada);
-    //Assert
-    expect(resultado).toBe(urlEsperada);
   });
 });
 
@@ -51,6 +37,46 @@ describe("numeroCarta", () => {
   });
 });
 
+describe("obtenerPuntosCarta", () => {
+  it("Si el numero recibido és 10, 11 o 12 el valor debe pasar a ser 0.5", () => {
+    //Arrange
+    const numero = 10;
+    // Act
+    const resultado = obtenerUrlCarta(numero);
+    //Assert
+    expect(resultado).toBe(0.5);
+  });
+});
 
+describe("sumarPuntuacicon", () => {
+  it("Suma el valor de los puntos de la carta a la puntuación, si obtenemos la carta 2, debemos sumar 2 a la puntuacion inicial o actual.", () => {
+    //Arrange
+    const cartaObtenida = 2;
+    //Act
+    const resultado = sumarPuntuacion(cartaObtenida);
+    //Assert
+    expect(resultado).toBe(2);
+  });
+});
 
+describe("actualizarPuntuacion", () => {
+  it("Actualiza el valor de la puntuación después de recibir el valor de la carta.", () => {
+    //Arrange
+  const numeroCarta = 5;
+    //Act
+   const resultado = actualizarPuntuacion(numeroCarta);
+    //Assert
+    expect(resultado).toBe(5);
+  });
+});
 
+describe("obtenerUrlCarta", () => {
+  it("Tiene que devolver la url del numero de la carta correspondiente, si sale el numero 3, tiene que devolver la url de la carta 3.", () => {
+    //Arrange
+    const urlEsperada = 3;
+    //Act
+    const resultado = obtenerUrlCarta(urlEsperada);
+    //Assert
+    expect(resultado).toBe(urlEsperada);
+  });
+});

@@ -33,13 +33,12 @@ export const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
 export const numeroCarta = (numeroAleatorio: number) => {
   console.log(numeroAleatorio);
   if (numeroAleatorio > 7) {
-     numeroAleatorio = numeroAleatorio + 2;
+    numeroAleatorio = numeroAleatorio + 2;
   } else if (numeroAleatorio === 0) {
-     numeroAleatorio = numeroAleatorio + 1;
-  }console.log(numeroAleatorio);
+    numeroAleatorio = numeroAleatorio + 1;
+  }
 
   return numeroAleatorio;
- 
 };
 
 export const obtenerPuntosCarta = (carta: number) => {
@@ -49,12 +48,10 @@ export const obtenerPuntosCarta = (carta: number) => {
   return carta;
 };
 
-
-
 export const sumarPuntuacion = (puntosCarta: number) => {
   return partida.puntuacionInicial + puntosCarta;
 };
 
 export const actualizarPuntuacion = (puntosSumados: number) => {
-partida.puntuacionInicial = puntosSumados;
+  partida.puntuacionInicial = puntosSumados;
 };

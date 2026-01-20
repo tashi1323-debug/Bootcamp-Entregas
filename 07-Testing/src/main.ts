@@ -1,7 +1,6 @@
-import {} from "./modelo";
+import { mostrarPuntuacion, iniciarJuego } from "./ui";
 
-import {} from "./motor";
-
-import { mostrarPuntuacion } from "./ui";
-
-document.addEventListener("DOMContentLoaded", mostrarPuntuacion);
+document.addEventListener("DOMContentLoaded",() =>{
+mostrarPuntuacion(); 
+iniciarJuego();
+} );

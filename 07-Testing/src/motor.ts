@@ -1,21 +1,7 @@
 
-import { puntuacion } from "./modelo";
+import { partida } from "./modelo";
 
 export const crearNumeroAleatorio = () => Math.floor(Math.random() * 11);
-
-export const numeroCarta = (numeroAleatorio: number) => {
-  if (numeroAleatorio > 7) {
-    return numeroAleatorio + 2;
-  }
-  if (numeroAleatorio === 0) {
-    return numeroAleatorio + 1;
-  }
-  return numeroAleatorio;
-};
-
-
-
-
 
 export const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
   switch (numeroAleatorioCarta) {
@@ -43,4 +29,35 @@ export const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
     default:
       return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
   }
+};
+
+export const numeroCarta = (numeroAleatorio: number) => {
+  console.log(numeroAleatorio);
+  if (numeroAleatorio > 7) {
+     numeroAleatorio = numeroAleatorio + 2;
+  } else if (numeroAleatorio === 0) {
+     numeroAleatorio = numeroAleatorio + 1;
+  }console.log(numeroAleatorio);
+
+  return numeroAleatorio;
+ 
+};
+
+export const obtenerPuntosCarta = (carta: number) => {
+  if (carta > 7) {
+    return 0.5;
+  }
+  return carta;
+};
+
+
+
+export const sumarPuntuacion = (puntosCarta: number) => {
+  return partida.puntuacionInicial + puntosCarta;
+};
+
+
+
+export const actualizarPuntuacion = (puntosSumados: number) => {
+partida.puntuacionInicial = puntosSumados;
 };

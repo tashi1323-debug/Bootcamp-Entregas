@@ -3,17 +3,33 @@ let puntuacionInicial = 0;
 const crearNumeroAleatorio = () => Math.floor(Math.random() * 11);
 
 const numeroCarta = (numeroAleatorio: number) => {
+  console.log(numeroAleatorio);
   if (numeroAleatorio > 7) {
-    return numeroAleatorio + 2;
+    numeroAleatorio = numeroAleatorio + 2;
   } else if (numeroAleatorio === 0) {
-    return numeroAleatorio + 1;
+    numeroAleatorio = numeroAleatorio + 1;
   }
-  if (numeroAleatorio > 9) {
-    numeroAleatorio = 0.5;
-  }
-  puntuacionInicial = numeroAleatorio + puntuacionInicial;
+
   return numeroAleatorio;
 };
+
+const obtenerPuntosCarta = (carta: number) => {
+  if (carta > 7) {
+    return 0.5;
+  }
+  return carta;
+}; 
+
+const sumarPuntuacion = (puntosCarta: number) => {
+  return puntuacionInicial + puntosCarta;
+};
+
+const actualizarPuntuacion = (puntosSumados: number) => {
+  puntuacionInicial = puntosSumados;
+};
+
+
+
 const mostrarPuntuacion = () => {
   const elementoMostrarPuntuacion = document.getElementById("puntuacion");
   if (
@@ -193,6 +209,9 @@ const nuevaPartida = () => {
 const puntuacionCarta = () => {
   let numero = crearNumeroAleatorio();
   let carta = numeroCarta(numero);
+  const puntos = obtenerPuntosCarta(carta);
+  const puntosSumados = sumarPuntuacion(puntos);
+  actualizarPuntuacion(puntosSumados);
   let cartaURL = obtenerUrlCarta(carta);
   mostrarCarta(cartaURL);
 };
