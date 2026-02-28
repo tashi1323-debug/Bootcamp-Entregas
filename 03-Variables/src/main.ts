@@ -55,3 +55,15 @@ console.log("%cQueen", tituloEstilo, grupo2);
 console.log("%cAC DC", tituloEstilo, grupo3);
 console.log("%cLudwig van Beethoven", tituloEstilo, grupo4);
 console.log("%cThe Rolling Stones", tituloEstilo, grupo5);
+
+
+const numeroDeVeces = (numero: number, texto: string) => {
+  for (let i = 0; i < numero; i++) {
+    console.log(texto);
+  }
+};
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  numeroDeVeces(4,"Hola");
+})

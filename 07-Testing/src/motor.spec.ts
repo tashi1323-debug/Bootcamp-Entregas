@@ -4,6 +4,7 @@ import {
   numeroCarta,
   sumarPuntuacion,
   actualizarPuntuacion,
+  obtenerPuntosCarta,
 } from "./motor";
 import { partida } from "./modelo";
 import { vi } from "vitest";
@@ -41,10 +42,11 @@ describe("obtenerPuntosCarta", () => {
   it("Si el numero recibido és 10, 11 o 12 el valor debe pasar a ser 0.5", () => {
     //Arrange
     const numero = 10;
+    const valor = 0.5;
     // Act
-    const resultado = obtenerUrlCarta(numero);
+    const resultado = obtenerPuntosCarta(numero);
     //Assert
-    expect(resultado).toBe(0.5);
+    expect(resultado).toBe(valor);
   });
 });
 
@@ -52,31 +54,37 @@ describe("sumarPuntuacicon", () => {
   it("Suma el valor de los puntos de la carta a la puntuación, si obtenemos la carta 2, debemos sumar 2 a la puntuacion inicial o actual.", () => {
     //Arrange
     const cartaObtenida = 2;
+    const puntuacionActual = 4;
+    const puntuacionActualizada = puntuacionActual + cartaObtenida;
     //Act
     const resultado = sumarPuntuacion(cartaObtenida);
     //Assert
-    expect(resultado).toBe(2);
+    expect(resultado).toBe(puntuacionActualizada);
   });
 });
 
 describe("actualizarPuntuacion", () => {
-  it("Actualiza el valor de la puntuación después de recibir el valor de la carta.", () => {
+  it("Actualiza el valor de la puntuacSión después de recibir el valor de la carta.", () => {
     //Arrange
-  const numeroCarta = 5;
+    const numeroCarta = 5;
+    const puntuacionInicial = 5;
+    const puntuacionActualizada = puntuacionInicial + numeroCarta;
+  
     //Act
-   const resultado = actualizarPuntuacion(numeroCarta);
+    const resultado = actualizarPuntuacion(numeroCarta);
     //Assert
-    expect(resultado).toBe(5);
+    expect(resultado).toBe(puntuacionActualizada);
   });
 });
 
 describe("obtenerUrlCarta", () => {
   it("Tiene que devolver la url del numero de la carta correspondiente, si sale el numero 3, tiene que devolver la url de la carta 3.", () => {
     //Arrange
-    const urlEsperada = 3;
+    const numeroCarta = 3;
+    const url = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg"
     //Act
-    const resultado = obtenerUrlCarta(urlEsperada);
+    const resultado = obtenerUrlCarta(numeroCarta);
     //Assert
-    expect(resultado).toBe(urlEsperada);
+    expect(resultado).toBe(url);
   });
 });
