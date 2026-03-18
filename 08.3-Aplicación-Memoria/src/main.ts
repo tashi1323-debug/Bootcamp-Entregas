@@ -1,7 +1,6 @@
-import { EmpezarPartida, mapearDivsCarta } from "./ui";
+import { EmpezarPartida,mapearDivsCarta } from "./ui";
 
 document.addEventListener("DOMContentLoaded", () => {
+  EmpezarPartida();
   mapearDivsCarta();
-  const btn = document.getElementById("empezarPartida");
-  btn?.addEventListener("click", EmpezarPartida);
 });

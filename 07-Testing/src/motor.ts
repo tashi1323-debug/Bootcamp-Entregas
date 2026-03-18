@@ -32,9 +32,9 @@ export const obtenerUrlCarta = (numeroAleatorioCarta: number) => {
 
 export const numeroCarta = (numeroAleatorio: number) => {
   if (numeroAleatorio > 7) {
-    numeroAleatorio = numeroAleatorio + 2;
+    numeroAleatorio += 2;
   } else if (numeroAleatorio === 0) {
-    numeroAleatorio = numeroAleatorio + 1;
+    numeroAleatorio += 1;
   }
   return numeroAleatorio;
 };
@@ -51,5 +51,6 @@ export const sumarPuntuacion = (puntosCarta: number) => {
 };
 
 export const actualizarPuntuacion = (puntosSumados: number) => {
-  partida.puntuacionInicial = puntosSumados;
+  
+  return partida.puntuacionInicial = puntosSumados;
 };

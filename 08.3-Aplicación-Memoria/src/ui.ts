@@ -1,5 +1,13 @@
-import { tablero , crearTableroInicial, Tablero} from "./modelo";
-import {sePuedeVoltear, parejaEncontrada,parejaNoEncontrada,resetIndices,sonPareja,esPartidaCompleta } from "./motor";
+import { tablero, crearTableroInicial, Tablero } from "./modelo";
+import {
+  sePuedeVoltear,
+  parejaEncontrada,
+  parejaNoEncontrada,
+  resetIndices,
+  sonPareja,
+  esPartidaCompleta,
+  voltearLaCarta,
+} from "./motor";
 
 const mensajes = () => {
   mensajeParejaEncontrada();
@@ -59,41 +67,38 @@ const actualizarImagen = () => {
 };
 
 const voltearCarta = (tablero: Tablero, indice: number): void => {
-  if (!sePuedeVoltear(tablero, indice)) return;
-  const carta = tablero.cartas[indice];
-  const estado = tablero.estadoPartida;
-  carta.estaVuelta = true;
-  if (estado === "CeroCartasLevantadas") {
-    tablero.estadoPartida = "UnaCartaLevantada";
-    tablero.indiceCartaVolteadaA = indice;
-  } else if (estado === "UnaCartaLevantada") {
-    tablero.estadoPartida = "DosCartasLevantadas";
-    tablero.indiceCartaVolteadaB = indice;
+  if (sePuedeVoltear(tablero, indice)) {
+    voltearLaCarta(tablero, indice);
+  }
 
+  if (tablero.estadoPartida === "DosCartasLevantadas") {
     tablero.intentos++;
     actualizarIntentos();
-    comprobarPareja(tablero, tablero.indiceCartaVolteadaA!, indice);
+    comprobarPareja(tablero);
   }
+
   actualizarImagen();
 };
 
-const comprobarPareja = (
-  tablero: Tablero,
-  indiceA: number,
-  indiceB: number,
-) => {
-  if (sonPareja(indiceA, indiceB, tablero)) {
-    parejaEncontrada(tablero, indiceA, indiceB);
-    resetIndices(tablero);
-    if (esPartidaCompleta(tablero)) tablero.estadoPartida = "PartidaCompleta";
-    mensajes();
-  } else {
-    setTimeout(() => {
-      parejaNoEncontrada(tablero, indiceA, indiceB);
-      actualizarImagen();
+const comprobarPareja = (tablero: Tablero) => {
+  const indiceA = tablero.indiceCartaVolteadaA;
+  const indiceB = tablero.indiceCartaVolteadaB;
+  if (indiceA !== undefined && indiceB !== undefined) {
+    if (sonPareja(indiceA, indiceB, tablero)) {
+      parejaEncontrada(tablero, indiceA, indiceB);
       resetIndices(tablero);
-    }, 1000);
+      if (esPartidaCompleta(tablero)) {
+        tablero.estadoPartida = "PartidaCompleta";
+      }
+    } else {
+      setTimeout(() => {
+        parejaNoEncontrada(tablero, indiceA, indiceB);
+        actualizarImagen();
+        resetIndices(tablero);
+      }, 1000);
+    }
   }
+  mensajes();
 };
 
 export const mapearDivsCarta = () => {
@@ -109,12 +114,10 @@ export const mapearDivsCarta = () => {
     ) {
       elementoDiv.addEventListener("click", () => {
         voltearCarta(tablero, indice);
-        mensajes();
       });
     }
   }
 };
-
 
 export const EmpezarPartida = () => {
   const botonEmpezarPartida = document.getElementById("empezarPartida");
@@ -137,5 +140,4 @@ export const EmpezarPartida = () => {
       actualizarImagen();
     });
   }
-  mapearDivsCarta();
 };

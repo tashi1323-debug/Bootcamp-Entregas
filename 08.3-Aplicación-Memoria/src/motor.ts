@@ -1,6 +1,5 @@
 import { Tablero, Carta } from "./modelo";
 
-
 // esta funcion es para barajar las cartas
 export const barajarCartas = (cartas: Carta[]): Carta[] => {
   const copia = [...cartas];
@@ -28,8 +27,6 @@ export const sePuedeVoltear = (tablero: Tablero, indice: number): boolean => {
 };
 
 // cambia los estados a una carta levantada si hacemos click en la primera carta y a dos cartas levantadas si hacemos click en la segunda . Comprueba si son pareja.
-
-
 
 export const sonPareja = (
   indiceA: number,
@@ -67,4 +64,15 @@ export const esPartidaCompleta = (tablero: Tablero): boolean => {
   return tablero.cartas.every((carta) => carta.encontrada);
 };
 
-
+export const voltearLaCarta = (tablero: Tablero, indice: number): void => {
+  const carta = tablero.cartas[indice];
+  const estado = tablero.estadoPartida;
+  carta.estaVuelta = true;
+  if (estado === "CeroCartasLevantadas") {
+    tablero.estadoPartida = "UnaCartaLevantada";
+    tablero.indiceCartaVolteadaA = indice;
+  } else if (estado === "UnaCartaLevantada") {
+    tablero.estadoPartida = "DosCartasLevantadas";
+    tablero.indiceCartaVolteadaB = indice;
+  }
+};
