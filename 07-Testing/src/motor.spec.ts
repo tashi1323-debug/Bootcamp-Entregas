@@ -45,6 +45,17 @@ describe("numeroCarta", () => {
     //Assert
     expect(resultado).toBe(numeroEsperado);
   });
+
+   it("Devuelve un 5 si recibe un 5", () => {
+    //Arrange
+    const numeroEsperado = 5;
+    const numero = 5;
+    //Act
+    const resultado = numeroCarta(numero);
+    //Assert
+    expect(resultado).toBe(numeroEsperado);
+  });
+  
 });
 
 describe("obtenerPuntosCarta", () => {
@@ -52,6 +63,26 @@ describe("obtenerPuntosCarta", () => {
     //Arrange
     const numero = 10;
     const valor = 0.5;
+    // Act
+    const resultado = obtenerPuntosCarta(numero);
+    //Assert
+    expect(resultado).toBe(valor);
+  });
+
+    it("Devuelve el mismo valor que recibe", () => {
+    //Arrange
+    const numero = 7;
+    const valor = 7;
+    // Act
+    const resultado = obtenerPuntosCarta(numero);
+    //Assert
+    expect(resultado).toBe(valor);
+  });
+
+    it("Devuelve 0 si el numero es 8 o 9", () => {
+    //Arrange
+    const numero = 8;
+    const valor = 0;
     // Act
     const resultado = obtenerPuntosCarta(numero);
     //Assert

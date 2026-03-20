@@ -40,7 +40,13 @@ export const numeroCarta = (numeroAleatorio: number) => {
 };
 
 export const obtenerPuntosCarta = (carta: number) => {
-  if (carta > 7) {
+  if(carta <= 7){
+    return carta
+  }
+  else if (carta === 8 || carta === 9) {
+    return 0;
+  }
+  else if( carta > 7){
     return 0.5;
   }
   return carta;
