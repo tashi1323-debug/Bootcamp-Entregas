@@ -121,7 +121,7 @@ const calcularTotales = (
 const acumularPorTipoIva = (
   lineasTicket: ResultadoLineaTicket[],
 ): TotalPorTipoIva[] => {
-  const resultado= lineasTicket.reduce(
+  const resultado = lineasTicket.reduce(
     (acc, item) => {
       const tipoIva = item.tipoIva;
       if (!acc[tipoIva]) {
@@ -132,10 +132,9 @@ const acumularPorTipoIva = (
     },
     {} as Record<string, number>,
   );
- return resultado.map(())
- }
- console.log(acumularPorTipoIva(lineasProcesadas))
 
+};
+console.log(acumularPorTipoIva(lineasProcesadas));
 
 /* En cuanto a los totales:
 El total sin IVA.

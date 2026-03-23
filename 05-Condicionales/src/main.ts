@@ -18,7 +18,7 @@ const obtenerPuntosCarta = (carta: number) => {
     return 0.5;
   }
   return carta;
-}; 
+};
 
 const sumarPuntuacion = (puntosCarta: number) => {
   return puntuacionInicial + puntosCarta;
@@ -27,8 +27,6 @@ const sumarPuntuacion = (puntosCarta: number) => {
 const actualizarPuntuacion = (puntosSumados: number) => {
   puntuacionInicial = puntosSumados;
 };
-
-
 
 const mostrarPuntuacion = () => {
   const elementoMostrarPuntuacion = document.getElementById("puntuacion");
@@ -165,7 +163,7 @@ const mePlanto = () => {
     mensajeMePlanto !== undefined &&
     mensajeMePlanto instanceof HTMLParagraphElement
   ) {
-    mensajeMePlanto.textContent = "No sabia que eras una 🐔";
+    mensajeMePlanto.textContent = "Te has plantado!";
   }
   const desabilitarBotonMePlanto = document.getElementById("meplanto");
   if (
@@ -175,6 +173,23 @@ const mePlanto = () => {
     desabilitarBotonMePlanto instanceof HTMLButtonElement
   ) {
     desabilitarBotonMePlanto.disabled = true;
+  }
+};
+const ocultarBoton = () => {
+  if (btnSaberMas instanceof HTMLButtonElement) {
+    btnSaberMas.hidden = true;
+  }
+};
+const revelarBoton = () => {
+  if (btnSaberMas instanceof HTMLButtonElement) {
+    btnSaberMas.hidden = false;
+  }
+};
+const saberMas = () => {
+  if (btnSaberMas instanceof HTMLButtonElement) {
+    btnSaberMas.addEventListener("click", () => {
+      dameCarta();
+    });
   }
 };
 
@@ -204,6 +219,7 @@ const nuevaPartida = () => {
   ) {
     desabilitarBotonMePlanto.disabled = false;
   }
+  ocultarBoton();
 };
 
 const puntuacionCarta = () => {
@@ -226,6 +242,8 @@ const btnNuevaCarta = document.getElementById("nueva-carta");
 
 const btnMePlanto = document.getElementById("meplanto");
 
+const btnSaberMas = document.getElementById("saberMas");
+
 const btnNuevaPartida = document.getElementById("nuevapartida");
 
 const iniciarJuego = () => {
@@ -243,7 +261,10 @@ const iniciarJuego = () => {
     btnMePlanto !== undefined &&
     btnMePlanto instanceof HTMLButtonElement
   ) {
-    btnMePlanto.addEventListener("click", mePlanto);
+    btnMePlanto.addEventListener("click", () => {
+      revelarBoton();
+      mePlanto();
+    });
   }
   if (
     btnNuevaPartida !== null &&
@@ -254,8 +275,10 @@ const iniciarJuego = () => {
       nuevaPartida();
 
       mostrarCarta(
-        "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
+        "https:raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg",
       );
     });
   }
+  ocultarBoton();
+  saberMas();
 };
