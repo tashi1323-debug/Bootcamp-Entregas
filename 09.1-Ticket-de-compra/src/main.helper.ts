@@ -114,8 +114,6 @@ export const lineasTransformadas = (
   });
 };
 
-export const lineasProcesadas = lineasTransformadas(productos);
-
 export const calcularTotales = (
   lineasProcesadas: ResultadoLineaTicket[],
 ): ResultadoTotalTicket => {
@@ -139,26 +137,35 @@ export const calcularTotales = (
     totalConIva: Number(totales.totalConIva.toFixed(2)),
   };
 };
-export const totales = calcularTotales(lineasProcesadas)
+
+const listadoTiposIva: TipoIva[] = [
+  "general",
+  "reducido",
+  "superReducidoA",
+  "superReducidoB",
+  "superReducidoC",
+  "sinIva",
+];
 
 export const acumularPorTipoIva = (
-  lineasTicket: ResultadoLineaTicket[],
+  lineasTicket: LineaTicket[],
 ): TotalPorTipoIva[] => {
-  return lineasTicket.reduce((acc, item) => {
-    const desgloseExistente = acc.find((d) => d.tipoIva === item.tipoIva);
+  const listadoPorTiposIva = listadoTiposIva.map((tipoIva) => {
+    const listadoProductosPorTipoIva = lineasTicket.filter(
+      (elemento) => elemento.producto.tipoIva === tipoIva,
+    );
 
-    const montoIva = item.precioConIva - item.precioSinIva;
-
-    if (desgloseExistente) {
-      desgloseExistente.cuantia += Number(montoIva.toFixed(2));
-    } else {
-      acc.push({
-        tipoIva: item.tipoIva,
-        cuantia: montoIva,
-      });
-    }
-
-    return acc;
-  }, [] as TotalPorTipoIva[]);
+    const acumuladoPorIva = listadoProductosPorTipoIva.reduce((acc, item) => {
+      const iva = obtenerPorcentajeIva(item.producto.tipoIva);
+      const subTotal = item.producto.precio * item.cantidad;
+      const total = (subTotal * iva) / 100;
+      acc += total;
+      return acc;
+    }, 0);
+    return {
+      tipoIva: tipoIva,
+      cuantia: Number(acumuladoPorIva.toFixed(2)),
+    };
+  });
+  return listadoPorTiposIva;
 };
-export const totalporIva = acumularPorTipoIva(lineasProcesadas)
