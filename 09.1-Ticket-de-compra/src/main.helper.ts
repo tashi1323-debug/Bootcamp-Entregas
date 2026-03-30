@@ -115,9 +115,9 @@ export const lineasTransformadas = (
 };
 
 export const calcularTotales = (
-  lineasProcesadas: ResultadoLineaTicket[],
+  productos: ResultadoLineaTicket[],
 ): ResultadoTotalTicket => {
-  const totales = lineasProcesadas.reduce(
+  const totales = productos.reduce(
     (acc, item) => {
       const totalSinIva = item.precioSinIva;
       const totalIva = item.precioConIva - item.precioSinIva;
@@ -158,7 +158,7 @@ export const acumularPorTipoIva = (
     const acumuladoPorIva = listadoProductosPorTipoIva.reduce((acc, item) => {
       const iva = obtenerPorcentajeIva(item.producto.tipoIva);
       const subTotal = item.producto.precio * item.cantidad;
-      const total = (subTotal * iva) / 100;
+      const total = subTotal + iva
       acc += total;
       return acc;
     }, 0);

@@ -5,17 +5,17 @@ import {
   ResultadoLineaTicket,
   acumularPorTipoIva,
   productos,
-  lineasTransformadas
+  lineasTransformadas,
+  LineaTicket
   
 } from "./main.helper";
 
 const calculatTicket = (
-  lineasProcesadas: ResultadoLineaTicket[],
+  productos:LineaTicket[],
 ): TicketFinal => {
   const productosTransofmados = lineasTransformadas(productos)
-  const total = calcularTotales(lineasProcesadas);
+  const total = calcularTotales(productosTransofmados);
   const totalporIva = acumularPorTipoIva(productos);
   return { lineas: productosTransofmados, total: total, desgloseIva: totalporIva };
 };
-const productosTransofrmados : ResultadoLineaTicket[] = lineasTransformadas(productos)
-console.log(calculatTicket(productosTransofrmados))
+console.log(calculatTicket(productos))
