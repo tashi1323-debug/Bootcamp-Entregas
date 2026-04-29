@@ -1,4 +1,4 @@
-const commonPasswords: string[] = [
+export const commonPasswords: string[] = [
   "password",
   "123456",
   "qwerty",
@@ -52,81 +52,84 @@ const commonPasswords: string[] = [
   "password12",
   "1234567890",
 ];
-interface ValidacionClave {
+export interface ValidacionClave {
   esValida: boolean;
   error?: string;
 }
-
-/*
+//Al no encontrar una solución por mi mismo, empeze a leer el siguiente modulo de Expresiones Regulares y enseguida me dio la solución
 export const tieneMayusculasYMinusculas = (clave: string): ValidacionClave => {
-   if(clave){
-        throw new Error ("La clave debe de tener mayúsculas y minúsculas")
-}
-}
+  const tieneMayuscula = /[A-Z]/.test(clave);
+  const tieneMinuscula = /[a-z]/.test(clave);
+
+  if (tieneMayuscula && tieneMinuscula) {
+    return { esValida: true };
+  }
+  return {
+    esValida: false,
+    error: "La clave debe de tener mayúsculas y minúsculas",
+  };
+};
+
+// 2. Validar si tiene numeros
 export const tieneNumeros = (clave: string): ValidacionClave => {
-    const numeros = [1,2,3,4,5,6,7,8,9,0]
-    numeros.some((numero) => {
-   if(clave !== numero){
-        throw new Error ("La clave debe de tener números")
-    }
-    })
- 
-}
-*///------------------------------------------------------------------------------------
+  const tieneNumero = /\d/.test(clave);
+  return tieneNumero
+    ? { esValida: true }
+    : { esValida: false, error: "La clave debe de tener números" };
+};
+
+// 3. Validar caracteres especiales
 export const tieneCaracteresEspeciales = (clave: string): ValidacionClave => {
-  const caracteresEspeciales = "(@,#,+, _, ...,!,|,$,~,%,€,&,¬./,(,?,¿,)";
-  if (clave !== clave[caracteresEspeciales]) {
-    return {
-      esValida: false,
-      error: "La clave debe de tener caracteres especiales",
-    };
-  }
-  return {esValida:true}
+  const caracteresEspeciales = /[@#+_!$%^&*()<>?/\|}{~:]/.test(clave);
+  return caracteresEspeciales
+    ? { esValida: true }
+    : {
+        esValida: false,
+        error: "La clave debe de tener caracteres especiales",
+      };
 };
-console.log(tieneCaracteresEspeciales("hol@"))
-//---------------------------------------------------------------------------------------
+
+// 4. Validar longitud mínima
 export const tieneLongitudMinima = (clave: string): ValidacionClave => {
-  if (clave.length < 8) {
-    return {
-      esValida: false,
-      error: "La clave debe de tener una longitud mínima de 8 caracteres",
-    };
-  }
-  return { esValida: true };
+  return clave.length >= 8
+    ? { esValida: true }
+    : {
+        esValida: false,
+        error: "La clave debe de tener una longitud mínima de 8 caracteres",
+      };
 };
-console.log(tieneLongitudMinima("1234567"));
+
+// 5. Validar que no contenga el nombre de usuario
 export const tieneNombreUsuario = (
   nombreUsuario: string,
   clave: string,
 ): ValidacionClave => {
-  if (clave === nombreUsuario) {
-    return {
-      esValida: false,
-      error: "La clave no debe tener el nombre del usuario",
-    };
-  }
-  return { esValida: true };
+  const contieneNombre = clave
+    .toLowerCase()
+    .includes(nombreUsuario.toLowerCase());
+  return !contieneNombre
+    ? { esValida: true }
+    : {
+        esValida: false,
+        error: "La clave no debe tener el nombre del usuario",
+      };
 };
-console.log(tieneNombreUsuario("Tashi", "Tashi"));
 
+// 6. Validar palabras comunes
 export const tienePalabrasComunes = (
   clave: string,
   commonPasswords: string[],
 ): ValidacionClave => {
-  const esComun = commonPasswords.some(
-    (palabra) => clave.toLowerCase() === palabra.toLowerCase(),
+  //Esta linea ha sido con ayuda
+  const palabraCoincide = commonPasswords.some((pass) =>
+    clave.toLowerCase().includes(pass.toLowerCase()),
   );
-
-  if (esComun) {
-    return {
-      esValida: false,
-      error: "La clave no debe de contener palabras comunes",
-    };
-  }
-
-  return { esValida: true };
+  return !palabraCoincide
+    ? { esValida: true }
+    : {
+        esValida: false,
+        error: "La clave no debe de contener palabras comunes",
+      };
 };
 
-console.log(tienePalabrasComunes("shadow", commonPasswords));
-
-//------------ Los throws iran en la funcion principal en caso de que !FunciónEjemplo
+//console.log(tienePalabrasComunes("flower", commonPasswords));
