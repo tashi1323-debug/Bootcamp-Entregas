@@ -131,5 +131,3 @@ export const tienePalabrasComunes = (
         error: "La clave no debe de contener palabras comunes",
       };
 };
-
-//console.log(tienePalabrasComunes("flower", commonPasswords));

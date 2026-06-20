@@ -1,3 +1,5 @@
+import { expect } from "vitest";
+
 describe("dummy specs", () => {
   it("should pass spec", () => {
     // Arrange

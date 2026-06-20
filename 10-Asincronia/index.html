@@ -1,15 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+   <link rel="stylesheet" href="/src/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Módulo 10 Asincronía</title>
   </head>
   <body>
-    <div id="app">
-      <h1>TypeScript Sandbox</h1>
+    <div id="cabezera">
+      <h1>Personajes de Mortadelo y Filemón</h1>
+      <form id="form-busqueda">
+        <input
+          id="filtro"
+          type="text"
+          placeholder="Introduce el nombre de un personaje"
+        />
+        <button>Filtrar</button>
+      </form>
     </div>
+    <div id="cuerpo"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

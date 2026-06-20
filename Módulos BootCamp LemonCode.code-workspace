@@ -1,0 +1,77 @@
+{
+  "folders": [
+    {
+      "name": "00 Git",
+      "path": "00 Git",
+    },
+    {
+      "name": "01-HTML",
+      "path": "01-HTML",
+    },
+    {
+      "name": "02-Tipos-de-datos-y-operaciones",
+      "path": "02-Tipos-de-datos-y-operaciones",
+    },
+    {
+      "name": "03-Variables",
+      "path": "03-Variables",
+    },
+    {
+      "name": "04-Funciones",
+      "path": "04-Funciones",
+    },
+    {
+      "name": "05-Condicionales",
+      "path": "05-Condicionales",
+    },
+    {
+      "name": "06-Imports",
+      "path": "06-Imports",
+    },
+    {
+      "name": "07-Testing",
+      "path": "07-Testing",
+    },
+    {
+      "name": "08.1-Bucles",
+      "path": "08.1-Bucles",
+    },
+    {
+      "name": "08.2-Array-Methods",
+      "path": "08.2-Array-Methods",
+    },
+    {
+      "name": "08.3-Aplicación-Memoria",
+      "path": "08.3-Aplicación-Memoria",
+    },
+    {
+      "name": "09.1-Ticket-de-compra",
+      "path": "09.1-Ticket-de-compra",
+    },
+    {
+      "name": "09.2-Clave-fuerte",
+      "path": "09.2-Clave-fuerte",
+    },
+    {
+      "name": "10-Asincronia",
+      "path": "10-Asincronia",
+    },
+    {
+      "name": "11-Expresiones-Regulares",
+      "path": "11-Expresiones-Regulares",
+    },
+    {
+      "name": "12-Clases",
+      "path": "12-Clases",
+    },
+    {
+      "name": "13.1-React-Movimientos",
+      "path": "13.1-React-Movimientos",
+    },
+    {
+      "name": "13.2-React-agregar-cuenta",
+      "path": "13.2-React-agregar-cuenta",
+    },
+  ],
+  "settings": {},
+}
