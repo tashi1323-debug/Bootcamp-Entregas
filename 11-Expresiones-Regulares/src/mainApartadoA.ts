@@ -55,7 +55,8 @@ const mostrarInformacionIban = (iban: string): InformacionIban | null => {
     cuenta: datos.numeroCuenta,
   };
 };
-mostrarInformacionIban("ES2114650100722030876293");
+console.log(mostrarInformacionIban("ES2114650100722030876293"));
+
 const validarIbanReal = (iban: string): boolean => {
   const ibanValido = limpiarIban(iban);
   return isValidIBAN(ibanValido);
@@ -72,4 +73,5 @@ const validarIban = (iban: string): ValidacionFinalIban => {
   }
   return { esValido: false, error: "El Iban no és correcto." };
 };
-validarIban("ES2114650100722030876293");
+
+console.log(validarIban("ES2114650100722030876293"));
