@@ -1,15 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Laboratorio Expresiones Regulares</title>
   </head>
+
   <body>
-    <div id="app">
-      <h1>TypeScript Sandbox</h1>
-    </div>
-    <script type="module" src="/src/main.ts"></script>
+    <main>
+      <h1>Extraer enlaces de imágenes</h1>
+
+      <textarea
+        id="html-input"
+        rows="20"
+        cols="100"
+        placeholder="Pega aquí el HTML..."
+      ></textarea>
+
+      <br />
+      <br />
+
+      <button id="extraer-imagenes" type="button">Extraer imágenes</button>
+
+      <h2>Resultado</h2>
+
+      <div id="resultado"></div>
+      <h2>Imágenes</h2>
+
+      <div id="galeria"></div>
+    </main>
+
+  <script type="module" src="./src/main.ts"></script>
   </body>
 </html>
